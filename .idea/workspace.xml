@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fdc8600-9f17-4adb-bee1-329ba307d26b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Enum" />
         <option value="JUnit3 Test Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -47,6 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -168,5 +168,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

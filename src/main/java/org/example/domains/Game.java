@@ -2,31 +2,35 @@ package org.example.domains;
 
 import org.example.domains.enums.CardSuit;
 import org.example.domains.enums.CardValue;
+import org.example.domains.enums.Status;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Game {
     private List<Player> players = new ArrayList<>();
-    private List<Card> deck = new ArrayList<>();
+    Stack<Card> deck = new Stack<>();
+
 
     public Game() {
-        System.out.println("Welcome To the Black Jack Game\n");
+        System.out.println("Welcome To the Black Jack Game");
         createDeck();
         promptUser();
     }
+
 
     public List<Player> getPlayers() {
         return players;
     }
 
+
     public void addPlayer(Player player) {
         this.players.add(player);
     }
+
 
     public Player getWinner() {
         int max = 0;
@@ -40,17 +44,21 @@ public class Game {
         return win;
     }
 
-    public List<Card> getDeck() {
+
+    public Stack<Card> getDeck() {
         return deck;
     }
 
-    public void setDeck(List<Card> deck) {
+
+    public void setDeck(Stack<Card> deck) {
         this.deck = deck;
     }
+
 
     public int getHighestScore() {
        return players.stream().filter(player -> player.getScore() <= 21).mapToInt(Player::getScore).max().getAsInt();
     }
+
 
     private void createDeck(){
         for (CardSuit suit: CardSuit.values()){
@@ -59,6 +67,7 @@ public class Game {
             }
         }
     }
+
 
     private void promptUser(){
         System.out.println("\nEnter [1]: Start Game | [2]: Assign Player | [3] Quit Game");
@@ -86,6 +95,7 @@ public class Game {
             System.out.println(ioException.toString());
         }
     }
+
 
     private void startGame(){
         if (players.size() <= 1){
@@ -115,6 +125,7 @@ public class Game {
         }
     }
 
+
     private void assignPlayers(){
         System.out.println("\nEnter Player name: OR Enter [0] to exit");
         System.out.print("Name or Exit Code : ");
@@ -141,6 +152,7 @@ public class Game {
         }
     }
 
+
     private void createDefaultPlayers(){
         players.clear();
         players.add(new Player("Player1"));
@@ -148,17 +160,58 @@ public class Game {
         players.add(new Player("Player3"));
     }
 
+
     private void playGame(){
         Collections.shuffle(deck);
+
+        players.forEach(player -> player.setStatus(Status.IN_GAME));
+
         for (Player player : players){
-            player.addCard(deck.get(0));
-            deck.remove(0);
-            player.addCard(deck.get(0));
-            deck.remove(0);
+            player.addCard(deck.pop());
+            player.addCard(deck.pop());
         }
-        System.out.println(deck.size());
-        players.forEach(c -> System.out.println(c.getCards()));
+
+        boolean hasWinner = false;
+
+        List<Player> newPlayers = players;
+
+        while(!hasWinner){
+            //bust hit stick
+            for(Player player : newPlayers){
+                if(player.getScore() > 21){
+                    player.setStatus(Status.BUSTED);
+                    System.out.println("\n" +player.getName() + " busted "+ "with score " +player.getScore() + "\n");
+                }
+            }
+
+            newPlayers = players.stream().filter(player -> !player.getStatus().equals(Status.BUSTED)).collect(Collectors.toList());
+            newPlayers.forEach(player -> System.out.print(player.getName() + ": " + player.getScore() + " "));
+
+            try {
+                System.out.println("\nSatisfied with score? Enter [1]: To Stick OR Enter [2]: To Hit");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                String line = reader.readLine();
+                List<String> commandInput = List.of(line.split(" "));
+
+                switch (commandInput.get(1)){
+                    case "1":
+                        System.out.println(line +"\n");
+                        break;
+                    case "2":
+                        Optional<Player> player = players.stream().filter(c -> c.getName().equals(commandInput.get(0))).findFirst();
+                        player.get().addCard(deck.pop());
+                        break;
+                    default:
+                        System.out.println("Invalid Input Command \n");
+                }
+            }
+            catch (IOException ioException){
+                System.out.println(ioException.toString());
+            }
+
+        }
     }
+
 
     @Override
     public String toString() {
