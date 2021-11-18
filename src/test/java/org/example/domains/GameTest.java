@@ -10,10 +10,10 @@ import java.util.List;
 
 public class GameTest {
 
-
     private Player player1;
     private Player player2;
     private Player player3;
+    private Player player4;
     private List<Card> cards;
     private Game game;
     private List<Player> players;
@@ -23,6 +23,7 @@ public class GameTest {
         player1 = new Player("Richard");
         player2 = new Player("Obed");
         player3 = new Player("Test");
+        player4 = new Player("Test1");
 
         cards = List.of(new Card(CardValue.FIVE, CardSuit.Club),
                 new Card(CardValue.EIGHT, CardSuit.Diamond),
@@ -45,10 +46,14 @@ public class GameTest {
 
     @Test
     public void testGetPlayers() {
+            List<Player> actual = players.getPlayers();
+            assertEquals(players, actual)
     }
 
     @Test
     public void testAddPlayer() {
+            players.addPlayer(player4);
+            assertInstanceEquals(player4);
     }
 
     @Test
