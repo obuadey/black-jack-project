@@ -1,5 +1,7 @@
 package org.example.domains;
 
+import org.example.domains.enums.Status;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,6 +9,7 @@ import java.util.stream.Collectors;
 public class Player {
     private String name;
     private List<Card> cards = new ArrayList<>();
+    private Status status;
 
     public Player(String name) {
         this.name = name;
@@ -39,6 +42,13 @@ public class Player {
        return cards.stream().mapToInt(Card::getCardValue).sum();
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     @Override
     public String toString() {
