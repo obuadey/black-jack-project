@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -65,11 +66,20 @@ public class GameTest {
 
     @Test
     public void testGetWinner() {
-        assertEquals(player1,game.getWinner());
+        Player actual = game.getWinner();
+        assertEquals(player1,actual);
     }
 
     @Test
     public void testGetHighestScore() {
-        assertEquals(19,game.getHighestScore());
+        int actual = game.getHighestScore();
+        assertEquals(19,actual);
     }
+
+    @Test
+    public void testDeckCreation() {
+        int actual = game.getDeck().size();
+        assertEquals(52,actual);
+    }
+
 }
