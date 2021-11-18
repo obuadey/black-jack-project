@@ -1,0 +1,55 @@
+BLACK JACK GAME
+
+Suits - Hearts, Diamonds, Clubs, Spades
+
+Card Values - 2 until 10, Jack, Queen, King - 10, Ace - 11(soft ace) - 1(hard ace)
+
+//hard ace becos if it was worth 11 the hand will be bust
+
+Entities - Card, Player, Game
+
+Card - value, name
+
+Player - name, score
+
+
+STEPS
+
+1. Start Game
+
+2. Prompt users with options
+
+* Start Game
+- check if players are assigned for the game
+- if no players selected or required number not reached?
+prompt user until condition met
+
+* Assign Players
+-greater than 1, less than or equal to 6
+-error if that's not the case
+-default is 3
+
+* Quit 
+-clear
+
+
+RULES
+* total_score < 17 - hit(get dealt another card from the top of the deck)
+* total_score >= 17 - stick(don't get dealt another card)
+*total_score > 21 - go bust(are ejected from the game)
+
+*Game finishes if
+-all players 'stick' in a round, player with total closest(but still under) 21 wins
+-any player hits 21 exactly
+-there is only one player left in the game cos all others have 'gone bust'
+
+
+STRATEGIES
+*FAULT - Stick at 17
+*Always hits
+*Always sticks
+*Risk Calculation to stick or hit
+
+SHUFFLING MECHANISMS
+*Riffle shuffle
+*Pharoah/Faro Shuffle
