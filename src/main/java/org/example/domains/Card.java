@@ -20,4 +20,11 @@ public class Card {
         return cardSuit;
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cardValue=" + cardValue +
+                ", cardSuit=" + cardSuit +
+                '}';
+    }
 }

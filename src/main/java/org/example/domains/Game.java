@@ -1,9 +1,10 @@
 package org.example.domains;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
     private List<Card> decks;
 
     public Game() {
@@ -23,7 +24,7 @@ public class Game {
         int max = 0;
         Player win = new Player("Null");
         for (Player player: players){
-            if (player.getScore() > max) {
+            if (player.getScore() > max && player.getScore() <= 21) {
                 max = player.getScore();
                 win = player;
             }
@@ -40,7 +41,7 @@ public class Game {
     }
 
     public int getHighestScore() {
-       return players.stream().mapToInt(Player::getScore).max().getAsInt();
+       return players.stream().filter(player -> player.getScore() <= 21).mapToInt(Player::getScore).max().getAsInt();
     }
 
     // TODO: Implement These methods
@@ -51,4 +52,13 @@ public class Game {
   //  stopGame()
 
   //  assignPlayers()
+
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "players=" + players +
+                ", decks=" + decks +
+                '}';
+    }
 }

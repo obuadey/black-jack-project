@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 public class Player {
     private String name;
     private List<Card> cards;
-    private int score;
 
     public Player(String name) {
         this.name = name;
@@ -33,7 +32,13 @@ public class Player {
        return cards.stream().mapToInt(Card::getCardValue).sum();
     }
 
-//    public void setScore(int score) {
-//        this.score = score;
-//    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", cards=" + cards +
+                ", score=" + getScore() +
+                '}';
+    }
 }

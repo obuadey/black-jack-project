@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fdc8600-9f17-4adb-bee1-329ba307d26b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/CardSuit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/CardValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/domains/CardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/domains/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +60,8 @@
       <recent name="org.example.domains" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerTest">
-    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GameTest">
+    <configuration name="GameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="black-jack-project" />
       <extension name="coverage">
         <pattern>
@@ -76,13 +70,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.domains" />
-      <option name="MAIN_CLASS_NAME" value="org.example.domains.PlayerTest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.domains.GameTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.testGetName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameTest.testAddPlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="black-jack-project" />
       <extension name="coverage">
         <pattern>
@@ -91,14 +85,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.domains" />
-      <option name="MAIN_CLASS_NAME" value="org.example.domains.PlayerTest" />
-      <option name="METHOD_NAME" value="testGetName" />
+      <option name="MAIN_CLASS_NAME" value="org.example.domains.GameTest" />
+      <option name="METHOD_NAME" value="testAddPlayer" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.testSetName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameTest.testGetHighestScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="black-jack-project" />
       <extension name="coverage">
         <pattern>
@@ -107,14 +101,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.domains" />
-      <option name="MAIN_CLASS_NAME" value="org.example.domains.PlayerTest" />
-      <option name="METHOD_NAME" value="testSetName" />
+      <option name="MAIN_CLASS_NAME" value="org.example.domains.GameTest" />
+      <option name="METHOD_NAME" value="testGetHighestScore" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.testgetCards" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameTest.testGetPlayers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="black-jack-project" />
       <extension name="coverage">
         <pattern>
@@ -123,14 +117,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.domains" />
-      <option name="MAIN_CLASS_NAME" value="org.example.domains.PlayerTest" />
-      <option name="METHOD_NAME" value="testgetCards" />
+      <option name="MAIN_CLASS_NAME" value="org.example.domains.GameTest" />
+      <option name="METHOD_NAME" value="testGetPlayers" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.testgetScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameTest.testGetWinner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="black-jack-project" />
       <extension name="coverage">
         <pattern>
@@ -139,8 +133,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.domains" />
-      <option name="MAIN_CLASS_NAME" value="org.example.domains.PlayerTest" />
-      <option name="METHOD_NAME" value="testgetScore" />
+      <option name="MAIN_CLASS_NAME" value="org.example.domains.GameTest" />
+      <option name="METHOD_NAME" value="testGetWinner" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PlayerTest" />
-        <item itemvalue="JUnit.PlayerTest.testgetScore" />
-        <item itemvalue="JUnit.PlayerTest.testSetName" />
-        <item itemvalue="JUnit.PlayerTest.testgetCards" />
-        <item itemvalue="JUnit.PlayerTest.testGetName" />
+        <item itemvalue="JUnit.GameTest" />
+        <item itemvalue="JUnit.GameTest.testGetHighestScore" />
+        <item itemvalue="JUnit.GameTest.testGetWinner" />
+        <item itemvalue="JUnit.GameTest.testAddPlayer" />
+        <item itemvalue="JUnit.GameTest.testGetPlayers" />
       </list>
     </recent_temporary>
   </component>

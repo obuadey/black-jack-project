@@ -8,6 +8,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class GameTest {
 
     private Player player1;
@@ -42,25 +45,31 @@ public class GameTest {
 
         game = new Game();
         players = new ArrayList<>(List.of(player1,player2,player3));
+
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
     }
 
     @Test
     public void testGetPlayers() {
-            List<Player> actual = players.getPlayers();
-            assertEquals(players, actual)
+            List<Player> actual = game.getPlayers();
+            assertEquals(players, actual);
     }
 
     @Test
     public void testAddPlayer() {
-            players.addPlayer(player4);
-            assertInstanceEquals(player4);
+            game.addPlayer(player4);
+            assertTrue(game.getPlayers().contains(player4));
     }
 
     @Test
     public void testGetWinner() {
+        assertEquals(player1,game.getWinner());
     }
 
     @Test
     public void testGetHighestScore() {
+        assertEquals(19,game.getHighestScore());
     }
 }
