@@ -44,7 +44,8 @@ public class GameTest {
                 new Card(CardValue.THREE,CardSuit.Diamond));
         player3.addCards(cards);
 
-        game = new Game();
+        String[] strings = {"dffsfd","dfdfd"};
+        game = new Game(strings);
         players = new ArrayList<>(List.of(player1,player2,player3));
 
         game.addPlayer(player1);

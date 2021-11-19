@@ -10,6 +10,7 @@ public class Player {
     private String name;
     private List<Card> cards = new ArrayList<>();
     private Status status;
+    private Strategy strategy;
 
     public Player(String name) {
         this.name = name;
@@ -27,7 +28,6 @@ public class Player {
         return cards;
     }
 
-    // TODO: Change to Add Card
     public void addCards(List<Card> cards) {
         this.cards.addAll(cards);
     }
@@ -55,7 +55,17 @@ public class Player {
         return "Player{" +
                 "name='" + name + '\'' +
                 ", cards=" + cards +
+                ", status=" + status +
                 ", score=" + getScore() +
+                ", strategy=" + strategy +
                 '}';
+    }
+
+    public Strategy getStrategy() {
+        return strategy;
+    }
+
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
     }
 }

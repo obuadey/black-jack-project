@@ -1,0 +1,5 @@
+org\example\domains\PlayerStrategy.class
+org\example\domains\PharoahShuffle.class
+org\example\domains\Strategy.class
+org\example\domains\RiffleShuffle.class
+org\example\domains\Shuffle.class
