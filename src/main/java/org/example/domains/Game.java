@@ -14,17 +14,15 @@ public class Game {
     private List<Player> players = new ArrayList<>();
     private Stack<Card> deck = new Stack<>();
     private boolean hasWinner;
+    private String[] args;
 
     private List<Player> modifierPlayers = new ArrayList<>();
     private List<Player> bustedPlayers = new ArrayList<>();
 
-
-    public Game() {
-        System.out.println("Welcome To the Black Jack Game");
+    public Game(String[] args) {
         createDeck();
-        promptUser();
+        this.args = args;
     }
-
 
     public List<Player> getPlayers() {
         return players;
@@ -73,89 +71,89 @@ public class Game {
     }
 
 
-    private void promptUser(){
-        System.out.println("\nEnter [1]: Start Game | [2]: Assign Player | [3] Quit Game");
-
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String line = reader.readLine();
-            switch (line){
-                case "1":
-                    startGame();
-                    break;
-                case "2":
-                    assignPlayers();
-                    break;
-                case "3":
-                    System.out.println("Thank You!!");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid Input Command \n");
-                    promptUser();
-            }
-        }
-        catch (IOException ioException){
-            System.out.println(ioException.toString());
-        }
-    }
-
-
-    private void startGame(){
-        if (players.size() <= 1){
-            System.out.println("To play Default Mode, Enter [1]: To Continue OR Enter [2]: Assign Player");
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                String line = reader.readLine();
-                switch (line){
-                    case "1":
-                        createDefaultPlayers();
-                        playGame();
-                        break;
-                    case "2":
-                        assignPlayers();
-                        break;
-                    default:
-                        System.out.println("Invalid Input Command \n");
-                        startGame();
-                }
-            }
-            catch (IOException ioException){
-                System.out.println(ioException.toString());
-            }
-        }
-        else {
-            playGame();
-        }
-    }
+//    public void promptUser(){
+//        System.out.println("\nEnter [1]: Start Game | [2]: Assign Player | [3] Quit Game");
+//
+//        try {
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//            String line = reader.readLine();
+//            switch (line){
+//                case "1":
+//                    startGame();
+//                    break;
+//                case "2":
+//                    assignPlayers();
+//                    break;
+//                case "3":
+//                    System.out.println("Thank You!!");
+//                    System.exit(0);
+//                    break;
+//                default:
+//                    System.out.println("Invalid Input Command \n");
+//                    promptUser();
+//            }
+//        }
+//        catch (IOException ioException){
+//            System.out.println(ioException.toString());
+//        }
+//    }
 
 
-    private void assignPlayers(){
-        System.out.println("\nEnter Player name: OR Enter [0] to exit");
-        System.out.print("Name or Exit Code : ");
-        while (players.size() <= 6) {
-            if (players.size() < 6) {
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    String line = reader.readLine();
-                    if ("0".equals(line)) {
-                        promptUser();
-                        System.exit(1);
-                    } else {
-                        players.add(new Player(line));;
-                        System.out.println("Total Number of players : " + players.size() +"\n");
-                        System.out.print("Name or Exit Code : ");
-                    }
-                } catch (IOException ioException) {
-                    System.out.println(ioException.toString());
-                }
-            }
-            else {
-                System.out.println("\n Maximum Player Limit Reached");
-                promptUser();
-            }
-        }
-    }
+//    private void startGame(){
+//        if (players.size() <= 1){
+//            System.out.println("To play Default Mode, Enter [1]: To Continue OR Enter [2]: Assign Player");
+//            try {
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//                String line = reader.readLine();
+//                switch (line){
+//                    case "1":
+//                        createDefaultPlayers();
+//                        playGame();
+//                        break;
+//                    case "2":
+//                        assignPlayers();
+//                        break;
+//                    default:
+//                        System.out.println("Invalid Input Command \n");
+//                        startGame();
+//                }
+//            }
+//            catch (IOException ioException){
+//                System.out.println(ioException.toString());
+//            }
+//        }
+//        else {
+//            playGame();
+//        }
+//    }
+
+
+//    private void assignPlayers(){
+//        System.out.println("\nEnter Player name: OR Enter [0] to exit");
+//        System.out.print("Name or Exit Code : ");
+//        while (players.size() <= 6) {
+//            if (players.size() < 6) {
+//                try {
+//                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//                    String line = reader.readLine();
+//                    if ("0".equals(line)) {
+////                        promptUser();
+//                        System.exit(1);
+//                    } else {
+//                        players.add(new Player(line));;
+//                        System.out.println("Total Number of players : " + players.size() +"\n");
+//                        System.out.print("Name or Exit Code : ");
+//                    }
+//                } catch (IOException ioException) {
+//                    System.out.println(ioException.toString());
+//                }
+//            }
+//            else {
+//                System.out.println("\n Maximum Player Limit Reached");
+////                promptUser();
+//            }
+//        }
+//    }
 
 
     private void createDefaultPlayers(){

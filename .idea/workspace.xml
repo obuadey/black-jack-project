@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="46ecf556-7c46-4b23-bf3b-33f57959bf46" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/domains/GameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +50,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -168,5 +170,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
