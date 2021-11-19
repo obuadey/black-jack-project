@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fdc8600-9f17-4adb-bee1-329ba307d26b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" afterDir="false" />
+    <list default="true" id="46ecf556-7c46-4b23-bf3b-33f57959bf46" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

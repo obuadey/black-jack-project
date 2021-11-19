@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 
 public class Game {
     private List<Player> players = new ArrayList<>();
-    Stack<Card> deck = new Stack<>();
+    private Stack<Card> deck = new Stack<>();
+    private boolean hasWinner;
+
+    private List<Player> modifierPlayers = new ArrayList<>();
+    private List<Player> bustedPlayers = new ArrayList<>();
 
 
     public Game() {
@@ -35,7 +39,7 @@ public class Game {
     public Player getWinner() {
         int max = 0;
         Player win = new Player("Null");
-        for (Player player: players){
+        for (Player player: modifierPlayers){
             if (player.getScore() > max && player.getScore() <= 21) {
                 max = player.getScore();
                 win = player;
@@ -136,6 +140,7 @@ public class Game {
                     String line = reader.readLine();
                     if ("0".equals(line)) {
                         promptUser();
+                        System.exit(1);
                     } else {
                         players.add(new Player(line));;
                         System.out.println("Total Number of players : " + players.size() +"\n");
@@ -163,55 +168,74 @@ public class Game {
 
     private void playGame(){
         Collections.shuffle(deck);
-
-        players.forEach(player -> player.setStatus(Status.IN_GAME));
-
         for (Player player : players){
             player.addCard(deck.pop());
             player.addCard(deck.pop());
         }
 
-        boolean hasWinner = false;
+        modifierPlayers = new ArrayList<>(players);
 
-        List<Player> newPlayers = players;
-
-        while(!hasWinner){
-            //bust hit stick
-            for(Player player : newPlayers){
-                if(player.getScore() > 21){
+        hasWinner = false;
+        while (!hasWinner){
+            for(Player player : modifierPlayers){
+                if (player.getScore() < 17){
+                    player.setStatus(Status.HIT);
+                }
+                else if (player.getScore() >=17 && player.getScore() <= 21){
+                    player.setStatus(Status.STICK);
+                }
+                else {
                     player.setStatus(Status.BUSTED);
-                    System.out.println("\n" +player.getName() + " busted "+ "with score " +player.getScore() + "\n");
+                    bustedPlayers.add(player);
                 }
             }
 
-            newPlayers = players.stream().filter(player -> !player.getStatus().equals(Status.BUSTED)).collect(Collectors.toList());
-            newPlayers.forEach(player -> System.out.print(player.getName() + ": " + player.getScore() + " "));
+            bustedPlayers.forEach(player -> modifierPlayers.remove(player));
 
-            try {
-                System.out.println("\nSatisfied with score? Enter [1]: To Stick OR Enter [2]: To Hit");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                String line = reader.readLine();
-                List<String> commandInput = List.of(line.split(" "));
-
-                switch (commandInput.get(1)){
-                    case "1":
-                        System.out.println(line +"\n");
-                        break;
-                    case "2":
-                        Optional<Player> player = players.stream().filter(c -> c.getName().equals(commandInput.get(0))).findFirst();
-                        player.get().addCard(deck.pop());
-                        break;
-                    default:
-                        System.out.println("Invalid Input Command \n");
+            for(Player player : modifierPlayers){
+                if (player.getStatus() == Status.HIT){
+                    player.addCard(deck.pop());
                 }
             }
-            catch (IOException ioException){
-                System.out.println(ioException.toString());
-            }
 
+            checkWinner();
         }
+
     }
 
+
+    private void checkWinner(){
+        if (modifierPlayers.size() == 0){
+            hasWinner = true;
+            System.out.println("No Winner in this Game");
+            printScoreboard();
+        }
+        else if (modifierPlayers.size() == 1){
+            hasWinner = true;
+            System.out.println("Game was won by : " + getWinner().toString());
+            printScoreboard();
+        }
+        else if (modifierPlayers.stream().filter(player -> player.getScore() == 21).count() == modifierPlayers.size()){
+            hasWinner = true;
+            System.out.println("All players had exactly 21");
+            printScoreboard();
+        }
+        else if (modifierPlayers.stream().filter(player -> player.getScore() == 21).count() == 1){
+            hasWinner = true;
+            System.out.println("Game was won by : " + getWinner().toString());
+            printScoreboard();
+        }
+        else if (modifierPlayers.stream().filter(player -> player.getStatus() == Status.STICK).count() == modifierPlayers.size()){
+            hasWinner = true;
+            System.out.println("Game was won by : " + getWinner().toString());
+            printScoreboard();
+        }
+
+    }
+
+    private void printScoreboard(){
+        players.forEach(System.out::println);
+    }
 
     @Override
     public String toString() {
