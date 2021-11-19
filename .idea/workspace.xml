@@ -7,10 +7,8 @@
     <list default="true" id="46ecf556-7c46-4b23-bf3b-33f57959bf46" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/Game.java" afterDir="false" />
-<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/PlayerStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/PlayerStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domains/enums/Status.java" afterDir="false" />
-=======
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,15 +17,6 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="JUnit3 Test Class" />
-        <option value="Enum" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
