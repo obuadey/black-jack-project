@@ -18,11 +18,16 @@ public class Game {
     private List<Player> modifierPlayers = new ArrayList<>();
     private List<Player> bustedPlayers = new ArrayList<>();
 
+<<<<<<< Updated upstream
 
     public Game() {
         System.out.println("Welcome To the Black Jack Game");
         createDeck();
         promptUser();
+=======
+    public Game(String[] args) {
+        this.args = args;
+>>>>>>> Stashed changes
     }
 
 
@@ -64,7 +69,7 @@ public class Game {
     }
 
 
-    private void createDeck(){
+    public void createDeck(){
         for (CardSuit suit: CardSuit.values()){
             for (CardValue value: CardValue.values()){
                 deck.add(new Card(value,suit));
@@ -158,20 +163,41 @@ public class Game {
     }
 
 
-    private void createDefaultPlayers(){
-        players.clear();
-        players.add(new Player("Player1"));
-        players.add(new Player("Player2"));
-        players.add(new Player("Player3"));
+    private void createDefaultPlayers(int numberOfPlayers){
+        for (int i =0; i < numberOfPlayers; i++){
+            players.add(new Player("Player"+(i+1)));
+        }
     }
 
 
-    private void playGame(){
+    public void processCommandArgs(){
+        if (args.length == 0){
+            createDefaultPlayers(3);
+            players.forEach(player -> System.out.println(player.getName()));
+        }
+        else if (args.length == 1){
+            if (Integer.parseInt(args[0])  > 1 && Integer.parseInt(args[0])  <= 6){
+                createDefaultPlayers(Integer.parseInt(args[0]));
+                players.forEach(player -> System.out.println(player.getName()));
+            }
+            else {
+                System.out.println("Min Number of Players : 2 and Max Number of Players: 6");
+            }
+        }
+        else {
+
+        }
+    }
+
+
+    public void startGame(){
         Collections.shuffle(deck);
         for (Player player : players){
             player.addCard(deck.pop());
             player.addCard(deck.pop());
         }
+
+
 
         modifierPlayers = new ArrayList<>(players);
 
