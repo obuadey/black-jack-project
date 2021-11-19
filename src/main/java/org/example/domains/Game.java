@@ -4,30 +4,19 @@ import org.example.domains.enums.CardSuit;
 import org.example.domains.enums.CardValue;
 import org.example.domains.enums.Status;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Game {
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
     private Stack<Card> deck = new Stack<>();
     private boolean hasWinner;
+    private final String[] args;
 
     private List<Player> modifierPlayers = new ArrayList<>();
-    private List<Player> bustedPlayers = new ArrayList<>();
+    private final PlayerStrategy playerStrategy = new PlayerStrategy();
 
-<<<<<<< Updated upstream
-
-    public Game() {
-        System.out.println("Welcome To the Black Jack Game");
-        createDeck();
-        promptUser();
-=======
     public Game(String[] args) {
         this.args = args;
->>>>>>> Stashed changes
     }
 
 
@@ -39,7 +28,6 @@ public class Game {
     public void addPlayer(Player player) {
         this.players.add(player);
     }
-
 
     public Player getWinner() {
         int max = 0;
@@ -59,105 +47,15 @@ public class Game {
     }
 
 
-    public void setDeck(Stack<Card> deck) {
-        this.deck = deck;
-    }
-
-
     public int getHighestScore() {
        return players.stream().filter(player -> player.getScore() <= 21).mapToInt(Player::getScore).max().getAsInt();
     }
 
 
-    public void createDeck(){
+    private void createDeck(){
         for (CardSuit suit: CardSuit.values()){
             for (CardValue value: CardValue.values()){
                 deck.add(new Card(value,suit));
-            }
-        }
-    }
-
-
-    private void promptUser(){
-        System.out.println("\nEnter [1]: Start Game | [2]: Assign Player | [3] Quit Game");
-
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String line = reader.readLine();
-            switch (line){
-                case "1":
-                    startGame();
-                    break;
-                case "2":
-                    assignPlayers();
-                    break;
-                case "3":
-                    System.out.println("Thank You!!");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid Input Command \n");
-                    promptUser();
-            }
-        }
-        catch (IOException ioException){
-            System.out.println(ioException.toString());
-        }
-    }
-
-
-    private void startGame(){
-        if (players.size() <= 1){
-            System.out.println("To play Default Mode, Enter [1]: To Continue OR Enter [2]: Assign Player");
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                String line = reader.readLine();
-                switch (line){
-                    case "1":
-                        createDefaultPlayers();
-                        playGame();
-                        break;
-                    case "2":
-                        assignPlayers();
-                        break;
-                    default:
-                        System.out.println("Invalid Input Command \n");
-                        startGame();
-                }
-            }
-            catch (IOException ioException){
-                System.out.println(ioException.toString());
-            }
-        }
-        else {
-            playGame();
-        }
-    }
-
-
-    private void assignPlayers(){
-        System.out.println("\nEnter Player name: OR Enter [0] to exit");
-        System.out.print("Name or Exit Code : ");
-        while (players.size() <= 6) {
-            if (players.size() < 6) {
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    String line = reader.readLine();
-                    if ("0".equals(line)) {
-                        promptUser();
-                        System.exit(1);
-                    } else {
-                        players.add(new Player(line));;
-                        System.out.println("Total Number of players : " + players.size() +"\n");
-                        System.out.print("Name or Exit Code : ");
-                    }
-                } catch (IOException ioException) {
-                    System.out.println(ioException.toString());
-                }
-            }
-            else {
-                System.out.println("\n Maximum Player Limit Reached");
-                promptUser();
             }
         }
     }
@@ -170,57 +68,87 @@ public class Game {
     }
 
 
-    public void processCommandArgs(){
+    private void processCommandArgs(){
         if (args.length == 0){
             createDefaultPlayers(3);
-            players.forEach(player -> System.out.println(player.getName()));
         }
         else if (args.length == 1){
             if (Integer.parseInt(args[0])  > 1 && Integer.parseInt(args[0])  <= 6){
                 createDefaultPlayers(Integer.parseInt(args[0]));
-                players.forEach(player -> System.out.println(player.getName()));
             }
             else {
                 System.out.println("Min Number of Players : 2 and Max Number of Players: 6");
             }
         }
         else {
-
+            if (args.length % 2 == 0){
+                for (int i=0; i < args.length; i++){
+                    if (i % 2 == 0){
+                        players.add(new Player(args[i].substring(2)));
+                    }
+                    else {
+                        if(Objects.equals(args[i], "always-stick")){
+                            players.get(players.size()-1).setStrategy(Strategy.ALWAYS_STICK);
+                        }
+                       else if(Objects.equals(args[i], "always-hit")){
+                            players.get(players.size()-1).setStrategy(Strategy.ALWAYS_HIT);
+                        }
+                       else if (Objects.equals(args[i], "risk-calculator")){
+                            players.get(players.size()-1).setStrategy(Strategy.RISK_CALCULATOR);
+                        }
+                       else {
+                            players.get(players.size()-1).setStrategy(Strategy.DEFAULT);
+                        }
+                    }
+                }
+            }
+            else {
+                System.out.println("Player or Strategy not provided");
+            }
         }
     }
 
 
     public void startGame(){
-        Collections.shuffle(deck);
-        for (Player player : players){
-            player.addCard(deck.pop());
-            player.addCard(deck.pop());
+        processCommandArgs();
+        createDeck();
+        shuffleCards();
+        for (int i = 0; i < 2; i++){
+            for (Player player : players){
+                Card popCard = deck.pop();
+                player.addCard(popCard);
+                System.out.println(player.getName() + " assigned " + popCard.getCardName()+ " of " + popCard.getCardSuit());
+            }
         }
 
-
+        players.forEach(player -> System.out.println(player.getName() + " " + player.getScore()));
 
         modifierPlayers = new ArrayList<>(players);
-
         hasWinner = false;
+
         while (!hasWinner){
             for(Player player : modifierPlayers){
-                if (player.getScore() < 17){
-                    player.setStatus(Status.HIT);
+                if (player.getStrategy() == Strategy.DEFAULT){
+                    playerStrategy.defaultStrategy(player);
                 }
-                else if (player.getScore() >=17 && player.getScore() <= 21){
-                    player.setStatus(Status.STICK);
+                else if (player.getStrategy() == Strategy.ALWAYS_STICK){
+                    playerStrategy.alwaysStickStrategy(player);
                 }
-                else {
-                    player.setStatus(Status.BUSTED);
-                    bustedPlayers.add(player);
+                else if (player.getStrategy() == Strategy.ALWAYS_HIT){
+                    playerStrategy.alwaysHitStrategy(player);
+                }
+                else if (player.getStrategy() == Strategy.RISK_CALCULATOR){
+                    playerStrategy.defaultStrategy(player);
                 }
             }
 
-            bustedPlayers.forEach(player -> modifierPlayers.remove(player));
+            playerStrategy.getBustedPlayers().forEach(player -> modifierPlayers.remove(player));
 
             for(Player player : modifierPlayers){
                 if (player.getStatus() == Status.HIT){
-                    player.addCard(deck.pop());
+                    Card popCard = deck.pop();
+                    player.addCard(popCard);
+                    System.out.println(player.getName() + " assigned " + popCard.getCardName() + " of " + popCard.getCardSuit());
                 }
             }
 
@@ -228,6 +156,8 @@ public class Game {
         }
 
     }
+
+
 
 
     private void checkWinner(){
@@ -238,7 +168,7 @@ public class Game {
         }
         else if (modifierPlayers.size() == 1){
             hasWinner = true;
-            System.out.println("Game was won by : " + getWinner().toString());
+            System.out.println("Game was won by : " + getWinner().getName() + " with Score of " + getWinner().getScore());
             printScoreboard();
         }
         else if (modifierPlayers.stream().filter(player -> player.getScore() == 21).count() == modifierPlayers.size()){
@@ -248,19 +178,33 @@ public class Game {
         }
         else if (modifierPlayers.stream().filter(player -> player.getScore() == 21).count() == 1){
             hasWinner = true;
-            System.out.println("Game was won by : " + getWinner().toString());
+            System.out.println("Game was won by : " + getWinner().getName() + " with Score of " + getWinner().getScore());
             printScoreboard();
         }
         else if (modifierPlayers.stream().filter(player -> player.getStatus() == Status.STICK).count() == modifierPlayers.size()){
             hasWinner = true;
-            System.out.println("Game was won by : " + getWinner().toString());
+            System.out.println("Game was won by : " + getWinner().getName() + " with Score of " + getWinner().getScore());
             printScoreboard();
         }
 
     }
 
+    private void shuffleCards(){
+        PharoahShuffle pharoahShuffle = new PharoahShuffle();
+        RiffleShuffle riffleShuffle = new RiffleShuffle();
+
+        int random = new Random().nextInt();
+        if (random %2 == 0){
+            riffleShuffle.shuffleCards(deck);
+        }
+        else {
+            pharoahShuffle.shuffleCards(deck);
+        }
+    }
+
     private void printScoreboard(){
-        players.forEach(System.out::println);
+        System.out.println();
+        players.forEach(player -> System.out.println(player.getName() + " || Total Score :" + player.getScore()));
     }
 
     @Override

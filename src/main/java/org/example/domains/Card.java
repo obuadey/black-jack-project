@@ -16,6 +16,10 @@ public class Card {
         return cardValue.getValue();
     }
 
+    public CardValue getCardName() {
+        return cardValue;
+    }
+
     public CardSuit getCardSuit() {
         return cardSuit;
     }
