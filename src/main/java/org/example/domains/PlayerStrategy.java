@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerStrategy {
-    private List<Player> bustedPlayers = new ArrayList<>();
+    private final List<Player> bustedPlayers = new ArrayList<>();
 
     public List<Player> getBustedPlayers() {
         return bustedPlayers;
