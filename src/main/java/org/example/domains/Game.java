@@ -5,10 +5,11 @@ import org.example.domains.enums.CardValue;
 import org.example.domains.enums.Status;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Game {
     private final List<Player> players = new ArrayList<>();
-    private Stack<Card> deck = new Stack<>();
+    private final Stack<Card> deck = new Stack<>();
     private boolean hasWinner;
     private final String[] args;
 
@@ -23,7 +24,6 @@ public class Game {
     public List<Player> getPlayers() {
         return players;
     }
-
 
     public void addPlayer(Player player) {
         this.players.add(player);
@@ -53,16 +53,13 @@ public class Game {
 
 
     private void createDeck(){
-        for (CardSuit suit: CardSuit.values()){
-            for (CardValue value: CardValue.values()){
-                deck.add(new Card(value,suit));
-            }
-        }
+        //creating a deck of 52 Cards by looping through CardSuit.values() and then looping through CardValue.values()
+        Arrays.stream(CardSuit.values()).forEach(suit -> Arrays.stream(CardValue.values()).forEach(value -> deck.add(new Card(value, suit))));
     }
 
 
     private void createDefaultPlayers(int numberOfPlayers){
-        for (int i =0; i < numberOfPlayers; i++){
+        for(int i : IntStream.range(0, numberOfPlayers).toArray()){
             players.add(new Player("Player"+(i+1)));
             players.get(players.size()-1).setStrategy(Strategy.DEFAULT);
         }
@@ -159,8 +156,6 @@ public class Game {
     }
 
 
-
-
     private void checkWinner(){
         if (modifierPlayers.size() == 0){
             hasWinner = true;
@@ -174,7 +169,7 @@ public class Game {
         }
         else if (modifierPlayers.stream().filter(player -> player.getScore() == 21).count() == modifierPlayers.size()){
             hasWinner = true;
-            System.out.println("All players had exactly 21");
+            System.out.println(modifierPlayers.size() +" players had exactly 21");
             printScoreboard();
         }
         else if (modifierPlayers.stream().filter(player -> player.getScore() == 21).count() == 1){
